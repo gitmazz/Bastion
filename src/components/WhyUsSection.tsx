@@ -1,6 +1,6 @@
 
 import { Badge } from "@/components/ui/badge";
-import { Users, Zap, DollarSign, Award } from "lucide-react";
+import { Users, Zap, DollarSign } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useNavigate } from "react-router-dom";
 
@@ -27,13 +27,6 @@ const differentiators = [
     description: "Transparent, fixed pricing with no hidden fees. Get enterprise-level compliance at startup-friendly rates.",
     stat: "50%",
     statLabel: "Cost Savings"
-  },
-  {
-    icon: Award,
-    title: "Proven Frameworks",
-    description: "Battle-tested methodologies and frameworks that have helped 100+ companies achieve SOC 2 compliance.",
-    stat: "99%",
-    statLabel: "Success Rate"
   }
 ];
 
@@ -67,7 +60,7 @@ const WhyUsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {differentiators.map((item, index) => (
             <div 
               key={item.title}
@@ -107,16 +100,6 @@ const WhyUsSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <div className="inline-flex items-center px-6 py-3 rounded-full glassmorphism border border-primary/30 text-primary shadow-lg">
-            <Award className="w-5 h-5 mr-2" />
-            <span className="font-medium">Trusted by 100+ companies worldwide</span>
-          </div>
         </div>
       </div>
     </section>
