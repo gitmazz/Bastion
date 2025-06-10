@@ -1,4 +1,3 @@
-
 import { useScrollProgress } from "@/hooks/useScrollAnimation";
 import { Button } from "@/components/ui/button";
 import { Shield, Menu } from "lucide-react";
@@ -13,22 +12,24 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-background/80 backdrop-blur-lg border-b border-border/50' 
-        : 'bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-lg border-b border-border/50"
+          : "bg-transparent"
+      }`}
+    >
       {/* Scroll progress bar */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300"
         style={{ width: `${scrollProgress}%` }}
       />
-      
+
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -39,18 +40,37 @@ const Header = () => {
             <span className="text-xl font-bold text-foreground">CyberSec</span>
           </div>
 
-          {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">Services</a>
-            <a href="#why-us" className="text-muted-foreground hover:text-primary transition-colors">Why Us</a>
-            <a href="#testimonials" className="text-muted-foreground hover:text-primary transition-colors">Testimonials</a>
-            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a>
+            <a
+              href="#why-us"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Why Us
+            </a>
+            <a
+              href="#the-difference"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              The Difference
+            </a>
+            <a
+              href="#services"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Services
+            </a>
+            <a
+              href="#contact"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </a>
           </nav>
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Get Started

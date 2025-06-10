@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Shield, ArrowRight, Mail, Phone, Calendar } from "lucide-react";
@@ -10,21 +9,30 @@ const CTASection = () => {
   const navigate = useNavigate();
 
   const handleContactClick = () => {
-    navigate('/contact');
+    navigate("/contact");
   };
 
   return (
-    <section ref={ref} id="contact" className="py-20 relative overflow-hidden star-field">
+    <section
+      ref={ref}
+      id="contact"
+      className="py-40 relative overflow-hidden star-field"
+    >
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-      
+
       <div className="container mx-auto px-6 relative z-10">
-        <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div
+          className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
           {/* Badge */}
-          <Badge variant="outline" className="mb-6 border-primary/30 text-primary backdrop-blur-sm shadow-md">
+          <Badge
+            variant="outline"
+            className="mb-6 border-primary/30 text-primary backdrop-blur-sm shadow-md"
+          >
             <Shield className="w-4 h-4 mr-2" />
             Ready to Get Started?
           </Badge>
@@ -38,13 +46,14 @@ const CTASection = () => {
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Join 100+ companies that have successfully achieved SOC 2 compliance with our expert guidance. 
-            Your free assessment is just one click away.
+            Join 100+ companies that have successfully achieved SOC 2 compliance
+            with our expert guidance. Your free assessment is just one click
+            away.
           </p>
 
           {/* Contact CTA button */}
           <div className="mb-12">
-            <Button 
+            <Button
               onClick={handleContactClick}
               size="lg"
               className="px-12 py-6 text-lg space-gradient hover:opacity-90 text-white shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300"
