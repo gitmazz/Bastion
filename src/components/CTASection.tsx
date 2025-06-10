@@ -5,10 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { Shield, ArrowRight, Mail, Phone, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const CTASection = () => {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
+  const { ref, isVisible } = useScrollAnimation();
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,15 +24,17 @@ const CTASection = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section ref={ref} id="contact" className="py-20 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           {/* Badge */}
-          <Badge variant="outline" className="mb-6 border-primary/30 text-primary animate-pulse-glow">
+          <Badge variant="outline" className="mb-6 border-primary/30 text-primary backdrop-blur-sm shadow-md">
             <Shield className="w-4 h-4 mr-2" />
             Ready to Get Started?
           </Badge>
@@ -39,7 +43,7 @@ const CTASection = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             <span className="text-white">Start Your</span>
             <br />
-            <span className="text-gradient glow-text">SOC 2 Journey Today</span>
+            <span className="text-gradient">SOC 2 Journey Today</span>
           </h2>
 
           {/* Subheading */}
@@ -56,13 +60,13 @@ const CTASection = () => {
                 placeholder="Enter your work email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-card/50 border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground"
+                className="flex-1 bg-card/50 backdrop-blur-sm border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground shadow-md"
                 required
               />
               <Button 
                 type="submit"
                 size="lg"
-                className="px-8 bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse-glow"
+                className="px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -89,15 +93,15 @@ const CTASection = () => {
           {/* Trust indicators */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
               <span>Free consultation included</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
               <span>No upfront costs</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-cyber-purple animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
               <span>30-day money-back guarantee</span>
             </div>
           </div>

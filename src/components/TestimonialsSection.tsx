@@ -1,7 +1,7 @@
-
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star, Quote } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
@@ -40,18 +40,24 @@ const clientLogos = [
 ];
 
 const TestimonialsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-20 relative">
+    <section ref={ref} id="testimonials" className="py-20 relative">
       <div className="container mx-auto px-6">
         {/* Client Logos */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <p className="text-muted-foreground mb-8 text-lg">Trusted by industry leaders</p>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
             {clientLogos.map((client, index) => (
               <div 
                 key={client.name}
-                className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center font-mono font-bold text-primary hover:scale-110 transition-transform duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm flex items-center justify-center font-mono font-bold text-primary hover:scale-110 transition-transform duration-300 shadow-md"
+                style={{ 
+                  transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                }}
               >
                 {client.logo}
               </div>
@@ -60,7 +66,9 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Section Title */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-white">What Our</span> <span className="text-gradient">Clients Say</span>
           </h2>
@@ -74,8 +82,10 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="p-6 bg-card/50 border-border/50 hover:border-primary/50 transition-all duration-500 group hover:scale-105 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className={`p-6 bg-card/30 backdrop-blur-md border-border/50 hover:border-primary/50 transition-all duration-500 group hover:scale-105 shadow-lg hover:shadow-xl ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: isVisible ? `${index * 0.2}s` : '0s' }}
             >
               <div className="space-y-4">
                 {/* Quote icon */}
@@ -84,7 +94,7 @@ const TestimonialsSection = () => {
                 {/* Rating */}
                 <div className="flex space-x-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-cyber-orange text-cyber-orange" />
+                    <Star key={i} className="w-4 h-4 fill-accent text-accent" />
                   ))}
                 </div>
                 
@@ -110,7 +120,7 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               
-              {/* Hover glow effect */}
+              {/* Subtle hover effect */}
               <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Card>
           ))}

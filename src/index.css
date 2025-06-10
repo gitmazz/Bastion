@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cybersecurity company design system with dark theme and neon accents */
+/* Modern cybersecurity company design system with glassmorphism and subtle effects */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
@@ -36,15 +36,6 @@
     --border: 220 26% 18%;
     --input: 220 26% 18%;
     --ring: 168 85% 55%;
-
-    --cyber-blue: 195 100% 50%;
-    --cyber-purple: 280 100% 70%;
-    --cyber-green: 168 85% 55%;
-    --cyber-pink: 320 100% 70%;
-    --cyber-orange: 45 93% 58%;
-
-    --glow-intensity: 0 0 20px;
-    --pulse-duration: 2s;
   }
 }
 
@@ -53,12 +44,16 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-inter;
     background-image: 
-      radial-gradient(circle at 20% 80%, hsl(280 100% 70% / 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(168 85% 55% / 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, hsl(195 100% 50% / 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, hsl(280 100% 70% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(168 85% 55% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsl(195 100% 50% / 0.05) 0%, transparent 50%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -67,34 +62,6 @@
 }
 
 @layer components {
-  .glow-text {
-    text-shadow: var(--glow-intensity) hsl(var(--primary));
-  }
-
-  .glow-border {
-    box-shadow: var(--glow-intensity) hsl(var(--primary));
-  }
-
-  .cyber-gradient {
-    background: linear-gradient(135deg, hsl(var(--cyber-blue)), hsl(var(--cyber-purple)));
-  }
-
-  .cyber-gradient-2 {
-    background: linear-gradient(135deg, hsl(var(--cyber-green)), hsl(var(--cyber-pink)));
-  }
-
-  .cyber-gradient-3 {
-    background: linear-gradient(135deg, hsl(var(--cyber-purple)), hsl(var(--cyber-orange)));
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow var(--pulse-duration) ease-in-out infinite alternate;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
   .grid-pattern {
     background-image: 
       linear-gradient(hsl(var(--border)) 1px, transparent 1px),
@@ -102,20 +69,8 @@
     background-size: 50px 50px;
   }
 
-  .scan-line {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scan-line::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
-    animation: scan 3s linear infinite;
+  .glassmorphism {
+    @apply bg-card/20 backdrop-blur-md border border-border/50;
   }
 }
 
@@ -128,19 +83,10 @@
   }
 
   .text-gradient-2 {
-    background: linear-gradient(135deg, hsl(var(--cyber-green)), hsl(var(--cyber-blue)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-}
-
-@keyframes pulse-glow {
-  0% {
-    box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
-  }
-  100% {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.4);
   }
 }
 
@@ -153,26 +99,6 @@
   }
 }
 
-@keyframes scan {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
