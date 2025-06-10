@@ -1,30 +1,20 @@
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Shield, ArrowRight, Mail, Phone, Calendar } from "lucide-react";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useNavigate } from "react-router-dom";
 
 const CTASection = () => {
-  const [email, setEmail] = useState("");
-  const { toast } = useToast();
   const { ref, isVisible } = useScrollAnimation();
+  const navigate = useNavigate();
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      toast({
-        title: "Thank you for your interest!",
-        description: "We'll be in touch within 24 hours to schedule your free assessment.",
-      });
-      setEmail("");
-    }
+  const handleContactClick = () => {
+    navigate('/contact');
   };
 
   return (
-    <section ref={ref} id="contact" className="py-20 relative overflow-hidden">
+    <section ref={ref} id="contact" className="py-20 relative overflow-hidden star-field">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
@@ -52,27 +42,17 @@ const CTASection = () => {
             Your free assessment is just one click away.
           </p>
 
-          {/* Email capture form */}
-          <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-12">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Input
-                type="email"
-                placeholder="Enter your work email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-card/50 backdrop-blur-sm border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground shadow-md"
-                required
-              />
-              <Button 
-                type="submit"
-                size="lg"
-                className="px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                Get Started
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </form>
+          {/* Contact CTA button */}
+          <div className="mb-12">
+            <Button 
+              onClick={handleContactClick}
+              size="lg"
+              className="px-12 py-6 text-lg space-gradient hover:opacity-90 text-white shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              Contact Us to Get Started
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </div>
 
           {/* Alternative contact methods */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12">
@@ -97,11 +77,11 @@ const CTASection = () => {
               <span>Free consultation included</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
               <span>No upfront costs</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
               <span>30-day money-back guarantee</span>
             </div>
           </div>

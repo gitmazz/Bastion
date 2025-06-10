@@ -3,39 +3,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern cybersecurity company design system with glassmorphism and subtle effects */
+/* Dark space-themed cybersecurity design system */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 220 26% 8%;
+    --background: 220 30% 4%;
     --foreground: 210 40% 98%;
 
-    --card: 220 26% 10%;
+    --card: 220 25% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 26% 10%;
+    --popover: 220 25% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 168 85% 55%;
-    --primary-foreground: 220 26% 8%;
+    --primary: 200 100% 60%;
+    --primary-foreground: 220 30% 4%;
 
-    --secondary: 280 100% 70%;
-    --secondary-foreground: 220 26% 8%;
+    --secondary: 210 30% 20%;
+    --secondary-foreground: 210 40% 98%;
 
-    --accent: 45 93% 58%;
-    --accent-foreground: 220 26% 8%;
+    --accent: 45 93% 65%;
+    --accent-foreground: 220 30% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --muted: 220 26% 14%;
+    --muted: 220 25% 12%;
     --muted-foreground: 215 20% 65%;
 
-    --border: 220 26% 18%;
-    --input: 220 26% 18%;
-    --ring: 168 85% 55%;
+    --border: 220 25% 15%;
+    --input: 220 25% 15%;
+    --ring: 200 100% 60%;
   }
 }
 
@@ -51,9 +51,9 @@
   body {
     @apply bg-background text-foreground font-inter;
     background-image: 
-      radial-gradient(circle at 20% 80%, hsl(280 100% 70% / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(168 85% 55% / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, hsl(195 100% 50% / 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 10% 20%, hsl(200 100% 60% / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, hsl(45 93% 65% / 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, hsl(220 25% 8% / 0.3) 0%, transparent 50%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -70,20 +70,24 @@
   }
 
   .glassmorphism {
-    @apply bg-card/20 backdrop-blur-md border border-border/50;
+    @apply bg-card/30 backdrop-blur-lg border border-border/30;
+  }
+
+  .space-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-2 {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--foreground)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -101,4 +105,28 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Space-themed star field animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.star-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, hsl(var(--primary)), transparent),
+    radial-gradient(2px 2px at 40px 70px, hsl(var(--accent)), transparent),
+    radial-gradient(1px 1px at 90px 40px, hsl(var(--foreground)), transparent),
+    radial-gradient(1px 1px at 130px 80px, hsl(var(--primary)), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: twinkle 4s ease-in-out infinite;
+  pointer-events: none;
 }
