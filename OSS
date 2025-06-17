@@ -1,0 +1,48 @@
+# 🧰 Open Source Tools for SOC 2 Compliance – Security TSC
+
+This guide lists open source software that supports implementation of security controls aligned with the **Security Trust Services Criteria** for SOC 2 compliance. These tools can help enforce real security without incurring high licensing costs.
+
+---
+
+## 🔒 Security TSC Control Areas and Tools
+
+| Control Area                    | Purpose                                          | Open Source Tool                                                                 | Notes |
+|--------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------|-------|
+| **Endpoint Detection & Response** | Detect/respond to threats on endpoints         | [Wazuh](https://wazuh.com/)                                                      | EDR, FIM, log monitoring, compliance reports |
+| **Log Aggregation & SIEM**     | Centralized logging and correlation              | [OpenSearch](https://opensearch.org/), [Graylog](https://www.graylog.org/), [TheHive](https://thehive-project.org/) | Use Filebeat/Logstash for ingestion |
+| **Asset & Inventory Management** | Track IT assets and configuration               | [Rudder](https://www.rudder.io/), [GLPI](https://glpi-project.org/)              | Rudder also includes compliance policy checks |
+| **Vulnerability Scanning**     | Identify security flaws                          | [OpenVAS](https://www.greenbone.net/en/), [Trivy](https://github.com/aquasecurity/trivy) | Trivy for containers/IaC, OpenVAS for network |
+| **File Integrity Monitoring**  | Detect unauthorized file changes                 | [OSSEC](https://www.ossec.net/) (or via Wazuh)                                   | OSSEC is integrated into Wazuh |
+| **Configuration Management**   | Enforce secure configurations                    | [Ansible](https://www.ansible.com/), [Terraform](https://www.terraform.io/)      | Use for baseline and auto-remediation |
+| **IaC Scanning**               | Pre-deployment misconfig detection               | [Checkov](https://github.com/bridgecrewio/checkov)                               | Great for scanning Terraform and CloudFormation |
+| **Secrets Management**         | Securely store secrets and credentials           | [Vault](https://www.vaultproject.io/)                                            | Use OSS version to manage sensitive data |
+| **SSO & MFA Gateway**          | Enforce identity and authentication              | [Authelia](https://www.authelia.com/)                                            | SSO and 2FA for internal dashboards |
+| **Security Awareness**         | Train users on security                          | Manual/Custom or basic phishing training scripts                                 | No leading OSS option; most are paid |
+| **Ticketing & Workflow**       | Track incidents, changes, and access requests    | [Zammad](https://zammad.org/), [GLPI](https://glpi-project.org/)                | Integrate with change and access workflows |
+| **Incident Response & SOAR**   | Respond and manage incidents                     | [TheHive](https://thehive-project.org/), [Cortex](https://www.strangebee.com/)   | SOAR + IR case management stack |
+| **System Hardening Audits**   | Detect insecure configurations on systems        | [Lynis](https://cisofy.com/lynis/)                                               | CLI tool for Linux security auditing |
+| **Log Forwarding Agents**      | Ship logs to SIEM                                | [Filebeat](https://www.elastic.co/beats/filebeat), [Fluentd](https://www.fluentd.org/) | Lightweight agents for log collection |
+
+---
+
+## 🧱 Example OSS Stack
+
+Here's how these tools can work together in your SOC 2 environment:
+
+- **EDR & FIM:** Wazuh agents
+- **SIEM:** Filebeat → OpenSearch or Graylog
+- **Infra Scanning:** Trivy + Checkov + OpenVAS
+- **Secrets:** Vault OSS
+- **Access:** Authelia (SSO/MFA gateway)
+- **Change Tracking:** GitHub + Zammad/GLPI
+- **Incident Response:** TheHive + Cortex
+
+---
+
+## 📌 Related Files
+
+- [SECURITY_TSC_PLAYBOOK.md](./SECURITY_TSC_PLAYBOOK.md)
+- [AVAILABILITY_TSC_PLAYBOOK.md](./AVAILABILITY_TSC_PLAYBOOK.md)
+- [README.md](./README.md)
+
+---
