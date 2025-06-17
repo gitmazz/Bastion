@@ -1,4 +1,4 @@
-# 🛡️ SOC 2 Playbook – Security TSC
+#  SOC 2 Playbook – Security TSC
 
 This playbook is used to assess and implement controls for the **Security Trust Services Criteria** during a SOC 2 readiness or remediation engagement.
 
@@ -89,7 +89,3 @@ This playbook is used to assess and implement controls for the **Security Trust 
 - [ ] How is ongoing vendor risk monitored?
 - [ ] Are high-risk vendors (e.g., cloud providers) SOC 2 or ISO 27001 certified?
 
----
-
-**Next TSC: [Availability →](./AVAILABILITY_TSC_PLAYBOOK.md)**  
-**Back to [Main README](./README.md)**  
